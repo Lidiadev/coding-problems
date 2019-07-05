@@ -24,7 +24,7 @@ namespace PerformanceOptimizationPatterns.Common
             Console.WriteLine();
         }
 
-        public static void Print(this IList<int> list)
+        public static void Print<T>(this IList<T> list)
         {
             foreach (var item in list)
                 Console.Write($"{item} ");

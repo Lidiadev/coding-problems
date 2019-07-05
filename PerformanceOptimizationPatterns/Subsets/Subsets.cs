@@ -30,11 +30,8 @@ namespace PerformanceOptimizationPatterns.Subsets
 
         public static void Test()
         {
-            var result = Subsets.FindSubsets(new int[] { 1, 3 });
-            result.Print();
-
-            result = Subsets.FindSubsets(new int[] { 1, 5, 3 });
-            result.Print();
+            Subsets.FindSubsets(new int[] { 1, 3 }).Print();
+            Subsets.FindSubsets(new int[] { 1, 5, 3 }).Print();
         }
     }
 }
