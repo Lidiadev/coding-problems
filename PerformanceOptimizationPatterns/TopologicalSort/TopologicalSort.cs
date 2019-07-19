@@ -73,7 +73,6 @@ namespace PerformanceOptimizationPatterns.TopologicalSort
         public static void Test()
         {
             var result = TopologicalSort.Sort(4, new int[][] { new int[] { 3, 2 }, new int[] { 3, 0 }, new int[] { 2, 0 }, new int[] { 2, 1 } });
-
             result.Print();
 
             result = TopologicalSort.Sort(5, new int[][] { new int[] { 4, 2 }, new int[] { 4, 3 }, new int[] { 2, 0 },
