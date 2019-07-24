@@ -32,8 +32,7 @@ namespace PerformanceOptimizationPatterns.MergeIntervals
             {
                 if (Intersect(result, intervals[i]))
                 {
-                    result = new Interval(Math.Min(result.Start, intervals[i].Start),
-                          Math.Max(result.End, intervals[i].End));
+                    result = new Interval(result.Start, Math.Max(result.End, intervals[i].End));
                 }
                 else
                 {
@@ -51,10 +50,9 @@ namespace PerformanceOptimizationPatterns.MergeIntervals
 
         private static bool Intersect(Interval a, Interval b)
         {
-            if ((b.Start <= a.Start && a.Start <= b.End)
-                || (b.Start <= a.End && a.End <= b.End)
-                || (a.Start <= b.Start && b.Start <= a.End)
-                || (a.Start <= b.End && b.End <= a.End))
+            if ((b.Start <= a.End && a.End <= b.End)
+                || b.Start <= a.End
+                || b.End <= a.End)
                 return true;
 
             return false;
