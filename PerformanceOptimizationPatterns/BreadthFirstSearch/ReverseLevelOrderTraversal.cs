@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PerformanceOptimizationPatterns.BreadthFirstSearch
 {
-    public static class LevelOrderTraversal
+    public static class ReverseLevelOrderTraversal
     {
         public static IList<List<int>> Traverse(TreeNode root)
         {
@@ -11,10 +11,10 @@ namespace PerformanceOptimizationPatterns.BreadthFirstSearch
 
             if (root == null)
                 return result;
-
-            if (root.Left == null && root.Right == null)
+            
+            if(root.Left == null && root.Right == null)
             {
-                result.Add(new List<int> { root.Value });
+                result.Add(new List<int>(root.Value));
                 return result;
             }
 
@@ -24,23 +24,24 @@ namespace PerformanceOptimizationPatterns.BreadthFirstSearch
             List<int> levelNodes;
             TreeNode currentNode;
 
-            while (queue.Count > 0)
+            while(queue.Count > 0)
             {
                 levelSize = queue.Count;
                 levelNodes = new List<int>();
+
                 for(int i = 0; i < levelSize; i++)
                 {
                     currentNode = queue.Dequeue();
                     levelNodes.Add(currentNode.Value);
 
-                    if(currentNode.Left != null)
+                    if (currentNode.Left != null)
                         queue.Enqueue(currentNode.Left);
 
                     if (currentNode.Right != null)
                         queue.Enqueue(currentNode.Right);
                 }
 
-                result.Add(levelNodes);
+                result.Insert(0, levelNodes);
             }
 
             return result;
@@ -54,7 +55,7 @@ namespace PerformanceOptimizationPatterns.BreadthFirstSearch
             root.Left.Left = new TreeNode(9);
             root.Right.Left = new TreeNode(10);
             root.Right.Right = new TreeNode(5);
-            LevelOrderTraversal.Traverse(root).Print();
+            ReverseLevelOrderTraversal.Traverse(root).Print();
         }
     }
 }
