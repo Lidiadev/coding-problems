@@ -72,7 +72,7 @@ namespace PerformanceOptimizationPatterns.MergeIntervals
             Console.Write($"[{interval.Start},{interval.End}]");
         }
 
-        static void Main(string[] args)
+        public static void Test()
         {
             List<Interval> input = new List<Interval>
             {
