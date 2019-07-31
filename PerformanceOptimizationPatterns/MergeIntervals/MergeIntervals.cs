@@ -3,17 +3,6 @@ using System.Collections.Generic;
 
 namespace PerformanceOptimizationPatterns.MergeIntervals
 {
-    public class Interval
-    {
-        public int Start { get; set; }
-        public int End { get; set; }
-
-        public Interval(int start, int end)
-        {
-            Start = start;
-            End = end;
-        }
-    }
     public static class MergeIntervals
     {
         public static List<Interval> Merge(Interval[] intervals)
@@ -49,28 +38,9 @@ namespace PerformanceOptimizationPatterns.MergeIntervals
         }
 
         private static bool Intersect(Interval a, Interval b)
-        {
-            if ((b.Start <= a.End && a.End <= b.End)
-                || b.Start <= a.End
-                || b.End <= a.End)
-                return true;
-
-            return false;
-        }
-
-        private static void Print(IList<Interval> intervals)
-        {
-            Console.WriteLine();
-            foreach(var interval in intervals)
-            {
-                Print(interval);
-            }
-        }
-
-        private static void Print(Interval interval)
-        {
-            Console.Write($"[{interval.Start},{interval.End}]");
-        }
+        => (b.Start <= a.End && a.End <= b.End)
+            || b.Start <= a.End
+            || b.End <= a.End;
 
         public static void Test()
         {
@@ -97,6 +67,15 @@ namespace PerformanceOptimizationPatterns.MergeIntervals
                 new Interval(3, 5)
             };
             Print(MergeIntervals.Merge(input.ToArray()));
+        }
+
+        private static void Print(IList<Interval> intervals)
+        {
+            Console.WriteLine();
+            foreach (var interval in intervals)
+            {
+                interval.Print();
+            }
         }
     }
 }
